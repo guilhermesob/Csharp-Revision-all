@@ -1,3 +1,21 @@
+using System;
+using System.Runtime.InteropServices;
+
+HWND CreateWindowExA(
+  [in]           DWORD     dwExStyle, // Optional windows styles
+  [in, optional] LPCSTR    lpClassName, // Windows class
+  [in, optional] LPCSTR    lpWindowName, // Windows text
+  [in]           DWORD     dwStyle, // Windows style
+  [in]           int       X, // X position
+  [in]           int       Y, // Y position
+  [in]           int       nWidth, // Width size
+  [in]           int       nHeight, // Height size
+  [in, optional] HWND      hWndParent, // Parent windows
+  [in, optional] HMENU     hMenu, // Menu
+  [in, optional] HINSTANCE hInstance, // Instance handle
+  [in, optional] LPVOID    lpParam // Additional application data
+);
+
 HWND hwnd = CreateWindowsEx(
 	0, 
 	CLASS_NAME, 
